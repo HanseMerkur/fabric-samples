@@ -1,0 +1,75 @@
+extends layout
+
+block content
+  h1= title
+
+  // Wrapper
+  #wrapper
+
+    // MILEAGE INFO
+    #mileagInfo
+      h2 Kilometerstand
+      p
+        strong FIN:
+        |  <span id='mileageInfoId'></span>
+        br
+        strong Datum:
+        |  <span id='mileageInfoDate'></span>
+        br
+        strong Kilometer:
+        |  <span id='mileageInfoValue'></span>
+        br
+        strong Bemerkung:
+        |  <span id='mileageInfoComment'></span>
+    // /MILEAGE INFO
+
+    // ADD MILEAGE
+    #addMileage
+      h2 Neuer Kilometerstand
+      fieldset
+        input#inputMileageDate(type='text', placeholder='Datum (yyyy-mm-dd)')
+        br
+        input#inputMileageValue(type='text', placeholder='Kilometer')
+        br
+        input#inputMileageComment(type='text', placeholder='Kommentar')
+        br
+        button#btnAddMileage(disabled='disabled') Kilometerstand setzen
+        br
+        button#btnShowMileageLog(disabled='disabled') Historie anzeigen
+    // /ADD MILEAGE
+
+    // ADD VEHICLE
+    #addVehicle
+      h2 Fahrzeug hinzufügen
+      fieldset
+        input#inputVehicleId(type='text', placeholder='FIN')
+        input#inputVehicleType(type='text', placeholder='Typ')
+        br
+        input#inputVehicleManufactor(type='text', placeholder='Hersteller')
+        input#inputVehicleModel(type='text', placeholder='Model')
+        br
+        input#inputVehicleRegistration(type='text', placeholder='KNZ')
+        button#btnAddVehicle Fahrzeug Hinzufügen
+    // /ADD VEHICLE
+
+    // VEHICLE LIST
+    #vehicleList
+      h2 Fahrzeugliste
+      table
+        thead
+          th FIN
+          th Typ
+          th Hersteller
+          th Modell
+          th KNZ
+        tbody
+    // /VEHICLE LIST
+
+  // /WRAPPER
+  h2 Entwicklung des Kilometerstands
+  #mileageLog
+    table
+      thead
+        th Datum
+        th Kilometer
+      tbody

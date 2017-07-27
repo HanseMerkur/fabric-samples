@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  vehiclelog:
+    build: .
+    environment:
+      NODE_ENV: development
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app/vehiclelog
+      - /app/vehiclelog/node_modules
+      - ./creds:/home/node/.hfc-key-store
