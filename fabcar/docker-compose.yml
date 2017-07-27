@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  fabcar:
+    build: .
+    environment:
+      NODE_ENV: development
+    volumes:
+      - .:/app/fabcar
+      - /app/fabcar/node_modules
+      - ./creds:/home/node/.hfc-key-store
