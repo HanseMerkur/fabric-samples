@@ -15,7 +15,7 @@ services:
       - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
       - FABRIC_CA_SERVER_CA_NAME=ca.example.com
     ports:
-      - "7054:7054"
+      - "127.0.0.1:7054:7054"
     command: sh -c 'fabric-ca-server start --ca.certfile /etc/hyperledger/fabric-ca-server-config/org1.example.com-cert.pem --ca.keyfile /etc/hyperledger/fabric-ca-server-config/a22daf356b2aab5792ea53e35f66fccef1d7f1aa2b3a2b92dbfbf96a448ea26a_sk -b admin:adminpw -d'
     volumes:
       - ./crypto-config/peerOrganizations/org1.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
@@ -36,7 +36,7 @@ services:
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderer
     command: orderer
     ports:
-      - 7050:7050
+      - "127.0.0.1:7050:7050"
     volumes:
         - ./config/:/etc/hyperledger/configtx
         - ./crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/:/etc/hyperledger/msp/orderer
@@ -65,8 +65,8 @@ services:
     command: peer node start
     # command: peer node start --peer-chaincodedev=true
     ports:
-      - 7051:7051
-      - 7053:7053
+      - "127.0.0.1:7051:7051"
+      - "127.0.0.1:7053:7053"
     volumes:
         - /var/run/:/host/var/run/
         - ./crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp:/etc/hyperledger/msp/peer
@@ -81,7 +81,7 @@ services:
     container_name: couchdb.example.com
     image: hyperledger/fabric-couchdb:x86_64-1.0.0
     ports:
-      - 5984:5984
+      - "127.0.0.1:5984:5984"
     environment:
       DB_URL: http://localhost:5984/member_db
     networks:
