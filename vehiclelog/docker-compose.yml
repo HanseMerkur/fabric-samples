@@ -1,5 +1,9 @@
 version: '2'
 
+networks:
+  net_basic:
+    external: true
+
 services:
   vehiclelog:
     build: .
@@ -11,3 +15,5 @@ services:
       - .:/app/vehiclelog
       - /app/vehiclelog/node_modules
       - ./creds:/home/node/.hfc-key-store
+    networks:
+        - net_basic

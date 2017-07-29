@@ -17,9 +17,9 @@ var options = {
     user_id: 'PeerAdmin',
     channel_id: 'mychannel',
     chaincode_id: 'fabcar',
-    peer_url: 'grpc://localhost:7051',
-    event_url: 'grpc://localhost:7053',
-    orderer_url: 'grpc://localhost:7050'
+    peer_url: 'grpc://peer0.org1.example.com:7051',
+    event_url: 'grpc://peer0.org1.example.com:7053',
+    orderer_url: 'grpc://orderer.example.com:7050'
 };
 
 var channel = {};

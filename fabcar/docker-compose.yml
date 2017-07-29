@@ -1,5 +1,9 @@
 version: '2'
 
+networks:
+  net_basic:
+    external: true
+
 services:
   fabcar:
     build: .
@@ -9,3 +13,5 @@ services:
       - .:/app/fabcar
       - /app/fabcar/node_modules
       - ./creds:/home/node/.hfc-key-store
+    networks:
+        - net_basic

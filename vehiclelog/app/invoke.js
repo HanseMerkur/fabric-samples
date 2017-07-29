@@ -18,9 +18,9 @@ var options = {
     user_id: 'PeerAdmin',
     channel_id: 'mychannel',
     chaincode_id: 'vehiclelog',
-    peer_url: 'grpc://192.168.99.100:7051',
-    event_url: 'grpc://192.168.99.100:7053',
-    orderer_url: 'grpc://192.168.99.100:7050'
+    peer_url: 'grpc://peer0.org1.example.com:7051',
+    event_url: 'grpc://peer0.org1.example.com:7053',
+    orderer_url: 'grpc://orderer.example.com:7050'
 };
 
 var channel = {};
