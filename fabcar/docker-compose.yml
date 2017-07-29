@@ -12,6 +12,6 @@ services:
     volumes:
       - .:/app/fabcar
       - /app/fabcar/node_modules
-      - ./creds:/home/node/.hfc-key-store
+      - /app/fabcar/creds
     networks:
         - net_basic
