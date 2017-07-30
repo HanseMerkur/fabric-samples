@@ -1,6 +1,7 @@
 body {
   padding: 30px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color: lightyellow;
 }
 
 h2 {
@@ -13,7 +14,9 @@ a {
 
 #wrapper {
 	padding-left:312px;
-	position:relative;
+}
+#clear {
+	clear: both;
 }
 
 #vehicleList {
@@ -41,21 +44,18 @@ a {
 				text-align:center;
 			}
 
-#mileagInfo {
+#mileageWrapper {
 	width:250px;
-	position:absolute;
-	top:0; left:0;
+	float: left;
 }
-	#mileagInfo p {
+	#mileageInfo p {
 		padding:15px;
 		border:1px solid #CCC;
 		background:rgba(80,120,255,0.05);
 	}
 
 #addMileage {
-	width:250px;
-	position:absolute;
-	top:150px; left:0;
+	margin:0 0 30px 0;
 }
 
 #addVehicle {
@@ -65,4 +65,9 @@ a {
 fieldset {
 	border:0;
 	padding:0; margin:0;
+}
+
+#mileageLog {
+	width: 800px;
+	height: 400px;
 }

@@ -4,10 +4,10 @@ block content
   h1= title
 
   // Wrapper
-  #wrapper
+  #mileageWrapper
 
     // MILEAGE INFO
-    #mileagInfo
+    #mileageInfo
       h2 Kilometerstand
       p
         strong FIN:
@@ -34,9 +34,12 @@ block content
         input#inputMileageComment(type='text', placeholder='Kommentar')
         br
         button#btnAddMileage(disabled='disabled') Kilometerstand setzen
-        br
-        button#btnShowMileageLog(disabled='disabled') Historie anzeigen
     // /ADD MILEAGE
+
+    // /MILEAGE WRAPPER
+
+  // Wrapper
+  #wrapper
 
     // ADD VEHICLE
     #addVehicle
@@ -49,7 +52,7 @@ block content
         input#inputVehicleModel(type='text', placeholder='Model')
         br
         input#inputVehicleRegistration(type='text', placeholder='KNZ')
-        button#btnAddVehicle Fahrzeug Hinzufügen
+        button#btnAddVehicle Fahrzeug hinzufügen
     // /ADD VEHICLE
 
     // VEHICLE LIST
@@ -62,14 +65,12 @@ block content
           th Hersteller
           th Modell
           th KNZ
+          th Verlauf
         tbody
     // /VEHICLE LIST
 
   // /WRAPPER
-  h2 Entwicklung des Kilometerstands
+
+  #clear
+  h2#resetZoom Verlauf des Kilometerstands
   #mileageLog
-    table
-      thead
-        th Datum
-        th Kilometer
-      tbody

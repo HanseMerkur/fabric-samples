@@ -7,15 +7,19 @@ $(document).ready(function() {
     // Mileage link click
     $('#vehicleList table tbody').on('click', 'td a.linkshowmileage', showMileageInfo);
 
+    // Mileage history click
+    $('#vehicleList table tbody').on('click', 'td a.linkshowhistory', showMileageLog);
+
     // Add Vehicle button click
     $('#btnAddVehicle').on('click', addVehicle);
 
     // Add Mileage button click
     $('#btnAddMileage').on('click', addMileage);
 
-    // Show History button click
-    $('#btnShowMileageLog').on('click', showMileageLog);
-
+    // Enable plugins like cursor and highlighter by default.
+    $.jqplot.config.enablePlugins = true;
+    $('#resetZoom').on('click', resetZoom);
+    var plot;
 });
 
 // Functions =============================================================
@@ -37,6 +41,7 @@ function populateTable() {
             tableContent += '<td>' + this.Record.manufactor + '</td>';
             tableContent += '<td>' + this.Record.model + '</td>';
             tableContent += '<td>' + this.Record.Registration + '</td>';
+            tableContent += '<td><a href="/vehicles/mileageLog/' + this.Key + '" class="linkshowhistory" rel="' + this.Key + '">Verlauf</a></td>';
             tableContent += '</tr>';
         });
 
@@ -69,6 +74,7 @@ function showMileageInfo(event) {
     $('#mileageInfoId').text(thisId);
     $('#btnAddMileage').removeAttr('disabled');
     $('#btnShowMileageLog').removeAttr('disabled');
+    $('#mileageLog table tbody').html('');
 };
 
 // Add Vehicle
@@ -181,7 +187,7 @@ function addMileage(event) {
 };
 
 // Show Mileage Info
-function showMileageLog(event) {
+function showMileageLogTable(event) {
 
     // Prevent Link from Firing
     event.preventDefault();
@@ -208,3 +214,72 @@ function showMileageLog(event) {
     });
 };
 
+// Show Mileage Info
+function showMileageLog(event) {
+
+    // Prevent Link from Firing
+    event.preventDefault();
+
+    // show Mileage Info
+    $(this).closest('tr').find('td a.linkshowmileage').trigger('click');
+    
+    // Retrieve id from link rel attribute
+    var thisId = $(this).attr('rel');
+
+    // jQuery AJAX call for JSON
+    $.getJSON( '/vehicles/mileageLog/' + thisId, function( data ) {
+
+        // Empty data
+        var values = [];
+
+        // For each item in our JSON, add a table row and cells to the content string
+        $.each(data, function(){
+            var value = [new Date(this.date).getTime(), Number(this.mileage)];
+            values.push(value);
+        });
+        if (values.length == 0) {
+            values.push([0, 0]);
+        }
+
+        var options = {
+            series: {
+                lines: { show: true },
+                points: { show: true }
+            }
+        };
+
+        // Inject the whole content string into our existing HTML table
+        $('#mileageLog').html('');
+        plot = $.jqplot('mileageLog',  [values], {
+            axes:{
+                xaxis:{
+                    renderer:$.jqplot.DateAxisRenderer,
+                    tickRenderer: $.jqplot.CanvasAxisTickRenderer, 
+                    tickOptions:{ 
+                        angle: -45,
+                        formatString:'%d.%m.%Y'
+                    }
+                },
+                yaxis:{
+                    label: 'km',
+                    labelRenderer: $.jqplot.CanvasAxisLabelRenderer,
+                }
+            },
+            cursor:{
+                zoom: true, 
+                looseZoom: true, 
+                showTooltip: true, 
+                followMouse: true, 
+                showTooltipOutsideZoom: true, 
+                constrainOutsideZoom: false
+            } 
+        });
+
+    });
+};
+
+function resetZoom(event) {
+    if (typeof plot !== "undefined") {
+        plot.resetZoom();
+    }
+};

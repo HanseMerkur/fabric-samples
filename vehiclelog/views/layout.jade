@@ -3,9 +3,14 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/jquery.jqplot.min.css')
   body
     block content
     script(src='/javascripts/jquery.min.js')
-    script(src='/javascripts/jquery.flot.min.js')
-    script(src='/javascripts/jquery.flot.time.min.js')
+    script(src='/javascripts/jquery.jqplot.min.js')
+    script(src='/javascripts/jqplot.canvasAxisLabelRenderer.js')
+    script(src='/javascripts/jqplot.canvasAxisTickRenderer.js')
+    script(src='/javascripts/jqplot.canvasTextRenderer.js')
+    script(src='/javascripts/jqplot.cursor.js')
+    script(src='/javascripts/jqplot.dateAxisRenderer.js')
     script(src='/javascripts/global.js')
